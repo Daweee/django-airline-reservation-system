@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+
+
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+
+<body>
+    <header>
+        <h1 class="airlines-name">Cyrine Airline Reservation System</h1>
+    </header>
+    <footer>
+        <p>Cyrine Airlines (2023)</p>
+    </footer>
+</body>
+
+<div class="form">
+
+    <h2>Welcome, Our dear guest!</h2><br>
+    {% if messages %}
+    {% for message in messages %}
+    <h2>{{message}}</h2>
+    {% endfor %}
+    {% endif %}
+
+    <form action="" method="post" id="login">
+        {% csrf_token %}
+        <input type="username" name="username" placeholder=" Username " onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)">
+        <input type="password" name="password" placeholder=" Password " onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)">
+
+    </form>
+    <button class="btn" form="login" value="submit">Login</button>
+
+    <p class="link">Don't have an account?<br>
+        <a href="http://localhost:8000/register/">Sign up </a> here</a>
+    </p>
+</div>
+
+<div>
+    <button onclick="location.href='http://localhost:8000/';" class="home-btn">Homepage</button>
+</div>
+
+<script>
+    function clearPlaceholder(input) {
+        input.setAttribute('data-placeholder', input.placeholder);
+        input.placeholder = '';
+    }
+  
+    function restorePlaceholder(input) {
+        if (!input.value) {
+        input.placeholder = input.getAttribute('data-placeholder');
+        }
+    }
+</script>

@@ -1,0 +1,140 @@
+body {
+    background-color: #f9ffe3;
+    color: #4C4C4C;
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    margin: 0;
+}
+
+header {
+    background-color: #cbd0b9;
+    height: 60px;
+    text-align: center;
+}
+
+.airlines-name {
+    font-size: 24px;
+    color: #333333;
+    margin: 0;
+}
+
+nav ul {
+    margin: 0;
+    padding-right: 847px;
+    list-style-type: none;
+    text-align: right;
+    list-style: none;
+}
+
+nav li {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+nav a {
+    display:block;
+    padding:0 10px;    
+    color:#FFF;
+    font-size:20px;
+    line-height:60px;
+    text-decoration:none;
+}
+
+.nav-buttons {
+    display: inline-block;
+    padding: 5px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+footer p{
+    margin-bottom: 5px;
+}
+
+footer {
+    background-color: #cbd0b9;
+    color: #333333;
+    padding: 5px 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+
+.form {
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    margin: 50px auto;
+    padding: 20px;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+   
+}
+
+.form h2 {
+    color: #333333;
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form input[type="username"],
+.form input[type="password"] {
+    border-radius: 5px;
+    border: none;
+    display: block;
+    font-size: 12px;
+    margin: 0 auto 20px;
+    padding: 10px;
+    width: 95%;
+    border: 1px solid #ccc;
+    align-self: flex-start;
+}
+
+.form p.link {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.form .link {
+    font-size: 14px;
+  }
+
+.form p.link a:hover {
+    color: #FFD700;
+}
+
+.form .btn {
+    background-color: lightgreen;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: auto;
+}
+
+.form .link a {
+    color: blue;
+}
+
+.home-btn {
+    display: block;
+    width: 200px;
+    height: 40px;
+    background-color: lightgray;
+    color: #818589;
+    border: none;
+    border-radius: 5px;
+    margin: 0 auto;
+    cursor: pointer;
+}
