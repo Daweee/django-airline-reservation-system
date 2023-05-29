@@ -10,7 +10,7 @@
 
 <body>
     <header>
-        <nav>
+        <nav>         
             <ul>
                 {% if user.is_authenticated %}
                 <li><a href="{% url 'logoutUser' %}"><button>Logout</button></a></li>
@@ -18,10 +18,10 @@
                 <li><a href="{% url 'loginUser' %}"><button>Login</button></a></li>
                 <li><a href="{% url 'registerUser' %}"><button>Register</button></a></li>
                 {% endif %}
-            </ul>
+            </ul>    
         </nav>
     </header>
-
+    
     <div class="main">
         <h2 class="booked-flights-header">Booked Flights</h2>
 

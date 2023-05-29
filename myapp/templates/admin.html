@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+
+<head>
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'all_flights' %}"><button class="nav-buttons">Home</button></a></li>
+                <li><a href="{% url 'logoutUser' %}"><button class="nav-buttons">Logout</button></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1 class="admin-title">Admin Panel</h1>
+
+        <h2 class="section-title">Add One-Way Flight</h2>
+        <form method="POST" action="{% url 'add_one_way_flight' %}">
+            {% csrf_token %}
+            <label for="destination">Destination:</label>
+            <input type="text" id="destination" name="destination" class="input-field" required>
+        
+            <label for="departure-date">Departure Date:</label>
+            <input type="date" id="departure-date" name="departure_date" class="input-field" required>
+        
+            <label for="price">Price:</label>
+            <input type="text" id="price" name="price" class="input-field" required>
+        
+            <button type="submit" class="submit-button">Add One-Way Flight</button>
+        </form>
+
+        <h2 class="section-title">Add Round-Trip Flight</h2>
+        <form method="POST" action="{% url 'add_round_trip_flight' %}">
+            {% csrf_token %}
+            <label for="destination">Destination:</label>
+            <input type="text" id="destination" name="destination" class="input-field" required>
+        
+            <label for="departure-date">Departure Date:</label>
+            <input type="date" id="departure-date" name="departure_date" class="input-field" required>
+
+            <label for="return-date">Return Date:</label>
+            <input type="date" id="return-date" name="return_date" class="input-field" required>
+        
+            <label for="price">Price:</label>
+            <input type="text" id="price" name="price" class="input-field" required>
+        
+            <button type="submit" class="submit-button">Add Round-Trip Flight</button>
+        </form>
+    </main>
+</body>
+
+<div>
+    <footer>
+        <p>Cyrine Airlines (2023)</p>
+    </footer>
+</div>
+
+</html>

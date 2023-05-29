@@ -20,21 +20,38 @@
         {% endif %}
         <form action="" method="post" id="register">
             {% csrf_token %}
-            <input type="text" name="username" placeholder=" Username ">
-            <input type="email" name="email" placeholder=" Email ">
-            <input type="password" name="password" placeholder=" Password ">
+            <input type="text" name="username" placeholder=" Username " onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)">
+            <input type="email" name="email" placeholder=" Email " onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)">
+            <input type="password" name="password" placeholder=" Password " onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)">
 
         </form>
         <button class="btn" form="register" value="submit">Register</button><br>
 
-        <p class="link">Already have an account?<br> 
-            <a href="{% url 'loginUser' %}">&nbsp;Login&nbsp;</a> here</a>
-        </p>
+        <div>
+            <p class="link">Already have an account?<br> 
+                <a href="{% url 'loginUser' %}">&nbsp;Login&nbsp;</a> here</a>
+            </p>
+        </div>  
 
         <br>
-        <button onclick="location.href='http://localhost:8000/';" class="btn">Homepage</button>
+        <div>
+            <button onclick="location.href='http://localhost:8000/';" class="btn">Homepage</button>
+        </div>
     </div>
 
 </body>
 
 </html>
+
+<script>
+    function clearPlaceholder(input) {
+        input.setAttribute('data-placeholder', input.placeholder);
+        input.placeholder = '';
+    }
+  
+    function restorePlaceholder(input) {
+        if (!input.value) {
+        input.placeholder = input.getAttribute('data-placeholder');
+        }
+    }
+</script>

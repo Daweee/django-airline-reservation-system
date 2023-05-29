@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from .models import BookedOneWay, BookedRoundTrip, OneWayFlight, RoundTripFlight
+from .models import BookedOneWay, BookedRoundTrip, OneWayFlight, RoundTripFlight, Flight
 from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -11,7 +11,7 @@ from django.shortcuts import render, redirect
 # Create your views here.
 
 
-def login(request):
+def login_view(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -69,10 +69,62 @@ def register(request):
             newAccount = User.objects.create_user(
                 username=username, email=email, password=password)
             newAccount.save()
-            messages.success(request, 'User successfully Added')
-            return redirect('http://localhost:8000/user/')
+            authenticated_user = authenticate(
+                request, username=username, password=password)
+            if authenticated_user is not None:
+                auth_login(request, authenticated_user)
+                messages.success(request, 'User successfully added')
+                return redirect('http://localhost:8000/user/')
 
     return render(request, 'register.html')
+
+
+# def admin_page(request):
+#     if not request.user.is_authenticated or not request.user.is_staff:
+#         return redirect('userPage')
+#     return render(request, 'admin.html')
+
+
+def add_one_way_flight(request):
+    if request.method == 'POST':
+        destination = request.POST['destination']
+        departure_date = request.POST['departure_date']
+        price = request.POST['price']
+
+        OneWayFlight.objects.create(
+            flightType='One-Way',
+            destination=destination,
+            departureDate=departure_date,
+            totalAmount=price
+        )
+
+        messages.success(request, 'One-Way Flight added successfully.')
+
+    one_way_flights = OneWayFlight.objects.all()
+    round_trip_flights = RoundTripFlight.objects.all()
+    return render(request, 'user.html', {'one_way_flights': one_way_flights, 'round_trip_flights': round_trip_flights})
+
+
+def add_round_trip_flight(request):
+    if request.method == 'POST':
+        destination = request.POST['destination']
+        departure_date = request.POST['departure_date']
+        return_date = request.POST['return_date']
+        price = request.POST['price']
+
+        RoundTripFlight.objects.create(
+            flightType='Round-Trip',
+            destination=destination,
+            departureDate=departure_date,
+            returnDate=return_date,
+            totalAmount=price
+        )
+
+        messages.success(request, 'Round-Trip Flight added successfully.')
+
+    one_way_flights = OneWayFlight.objects.all()
+    round_trip_flights = RoundTripFlight.objects.all()
+    return render(request, 'user.html', {'one_way_flights': one_way_flights, 'round_trip_flights': round_trip_flights})
 
 
 def all_flights(request):

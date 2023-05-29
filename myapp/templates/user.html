@@ -12,17 +12,20 @@
 <body>
     <header>
         <nav>
-            <ul>
+            <ul>          
                 {% if user.is_authenticated %}
                 <li><a href="{% url 'logoutUser' %}"><button class="nav-buttons">Logout</button></a></li>
                 {% else %}
                 <li><a href="{% url 'loginUser' %}"><button class="nav-buttons">Login</button></a></li>
                 <li><a href="{% url 'registerUser' %}"><button class="nav-buttons">Register</button></a></li>
                 {% endif %}
+             
             </ul>
         </nav>
     </header>
-    <main>
+      </form>
+                    </li>
+                    <main>
         <h1>Welcome to Cyrine Airline Reservation System, {{ user.username }}!</h1>
         <p>We provide the best service nationwide!</p>
 
@@ -51,14 +54,14 @@
                     {% endfor %}
                 </ul>
             </div>
-
+        
             <div class="round-trip-flights">
                 <h3>Round-Trip Flights:</h3>
                 <ul>
                     {% for flight in round_trip_flights %}
                     <li>
                         <div class="flight-info">
-                            <div class="flight-destination">{{ flight.destination }}</div>
+                            <div class="flight-destination">{{ flight.destination }}</div> &nbsp;&nbsp;&nbsp;&nbsp;
                             <div class="flight-dates">{{ flight.departureDate }} - {{ flight.returnDate }}</div>
                             <div class="flight-price">{{ flight.totalAmount }}</div>
                         </div>
@@ -75,6 +78,7 @@
                 </ul>
             </div>
         </div>
+        
 
         {% if messages %}
         <ul class="messages">

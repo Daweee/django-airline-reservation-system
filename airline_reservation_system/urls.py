@@ -21,9 +21,15 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('adminpage/', TemplateView.as_view(template_name='admin.html'),
+         name='adminPage'),
+    path('add-one-way-flight/', views.add_one_way_flight,
+         name='add_one_way_flight'),
+    path('add-round-trip-flight/', views.add_round_trip_flight,
+         name='add_round_trip_flight'),
     path('', TemplateView.as_view(template_name='index.html'), name='home'),
     path('register/', views.register, name="registerUser"),
-    path('login/', views.login, name="loginUser"),
+    path('login/', views.login_view, name="loginUser"),
     path('logout/', views.logout, name="logoutUser"),
     path('user/', views.all_flights, name='all_flights'),
     path('book/', views.book_flights, name='book'),

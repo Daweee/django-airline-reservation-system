@@ -2,46 +2,52 @@
 <html>
 {% load static %}
 
+    <head>
+        <title>Login</title>
+        <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    </head>
 
-<head>
-    <title>Login</title>
-    <link rel="stylesheet" href="{% static 'css/login.css' %}">
-</head>
+    <body>
+        <header>
+            <div class="header-container">
+                <h1 class="airlines-name">Cyrine Airline Reservation System</h1>   
+            </div>
+            <div>
+                <a href="{% url 'adminPage' %}" class="admin-button">Admin</a>
+            </div>
+        </header>
+        
 
-<body>
-    <header>
-        <h1 class="airlines-name">Cyrine Airline Reservation System</h1>
-    </header>
-    <footer>
-        <p>Cyrine Airlines (2023)</p>
-    </footer>
-</body>
+        <div class="form">
 
-<div class="form">
+            <h2>Welcome, Our dear guest!</h2><br>
+            {% if messages %}
+            {% for message in messages %}
+            <h2>{{message}}</h2>
+            {% endfor %}
+            {% endif %}
 
-    <h2>Welcome, Our dear guest!</h2><br>
-    {% if messages %}
-    {% for message in messages %}
-    <h2>{{message}}</h2>
-    {% endfor %}
-    {% endif %}
+            <form action="" method="post" id="login">
+                {% csrf_token %}
+                <input type="username" name="username" placeholder=" Username " onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)">
+                <input type="password" name="password" placeholder=" Password " onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)">
 
-    <form action="" method="post" id="login">
-        {% csrf_token %}
-        <input type="username" name="username" placeholder=" Username " onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)">
-        <input type="password" name="password" placeholder=" Password " onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)">
+            </form>
+            <button class="btn" form="login" value="submit">Login</button>
 
-    </form>
-    <button class="btn" form="login" value="submit">Login</button>
+            <p class="link">Don't have an account?<br>
+                <a href="http://localhost:8000/register/">Sign up </a> here</a>
+            </p>
+        </div>
 
-    <p class="link">Don't have an account?<br>
-        <a href="http://localhost:8000/register/">Sign up </a> here</a>
-    </p>
-</div>
-
-<div>
-    <button onclick="location.href='http://localhost:8000/';" class="home-btn">Homepage</button>
-</div>
+        <div>
+            <button onclick="location.href='http://localhost:8000/';" class="home-btn">Homepage</button>
+        </div>
+        <footer>
+            <p>Cyrine Airlines (2023)</p>
+        </footer>
+    </body>
+</html>
 
 <script>
     function clearPlaceholder(input) {

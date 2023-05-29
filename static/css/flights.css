@@ -1,0 +1,131 @@
+body {
+    background-color: #f9ffe3;
+    margin: 0;
+    padding: 0;
+    flex-direction: column;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    height: 100vh;
+}
+header ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  header li {
+    margin-right: 10px;
+  }
+  
+  header a {
+    text-decoration: none;
+  }
+  
+  header button {
+    background-color: #c6c2b6;
+    color: #333333;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  header button:hover {
+    background-color: #e6f5d9;
+  }
+  .main {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .booked-flights-header {
+    color: #333333;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .booked-flights-subheader {
+    color: #333333;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .booked-flights-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .booked-flight {
+    margin-bottom: 20px;
+  }
+  
+  .flight-type {
+    font-weight: bold;
+  }
+  
+  .flight-details {
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .flight-destination {
+    font-weight: bold;
+  }
+  
+  .flight-dates {
+    color: #666666;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  
+  .flight-departure-date {
+    margin-bottom: 5px;
+  }
+  
+  .flight-amount {
+    font-weight: bold;
+  }
+  
+  .no-booked-flights {
+    color: #666666;
+    font-size: 16px;
+    text-align: center;
+  }
+  
+  form button[type="submit"] {
+    background-color: #e6f5d9;
+    color: #333333;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  form button[type="submit"]:hover {
+    background-color: #d3edc2;
+  }
+
+  .confirm-booking {
+    background-color: #e6f5d9;
+    color: #333333;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  .confirm-booking:hover {
+    background-color: #d3edc2;
+  }

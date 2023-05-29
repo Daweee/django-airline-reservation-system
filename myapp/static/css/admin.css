@@ -1,0 +1,112 @@
+body {
+    background-color: #f9ffe3;
+    color: #4C4C4C;
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    margin: 0;
+}
+
+header {
+    background-color: #cbd0b9;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+nav ul {
+    margin: 0;
+    padding-right: 847px;
+    list-style-type: none;
+    text-align: right;
+    list-style: none;
+}
+
+nav li {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+nav a {
+    display:block;
+    padding:0 10px;    
+    color:#FFF;
+    font-size:20px;
+    line-height:60px;
+    text-decoration:none;
+}
+
+.nav-buttons {
+    display: inline-block;
+    padding: 5px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+footer p {
+    margin-bottom: 5px;
+}
+
+main {
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    margin: 50px auto;
+    padding: 20px;
+    max-width: 400px;
+}
+
+h1 {
+    color: #333333;
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+form input[type="text"],
+form input[type="date"] {
+    border-radius: 5px;
+    border: none;
+    display: block;
+    font-size: 12px;
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 95%;
+    border: 1px solid #ccc;
+}
+
+form button[type="submit"] {
+    background-color: lightgreen;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: auto;
+    display: block;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    margin-top: auto;
+  }
+
