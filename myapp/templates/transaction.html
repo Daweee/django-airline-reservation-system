@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    {% load static %}
+<head>
+    <title>Transaction</title>
+    <link rel="stylesheet" href="{% static 'css/transaction.css' %}">
+</head>
+<body>
+    <a href="{% url 'adminPage' %}">
+        <button class="back-button">Back to Admin Panel</button>
+    </a>
+    <h1 class="transaction-title">All Booked Flights</h1>
+    <table class="transaction-table">
+        <thead>
+            <tr>
+                <th class="transaction-header">User</th>
+                <th class="transaction-header">Flight Type</th>
+                <th class="transaction-header">Departure</th>
+                <th class="transaction-header">Destination</th>
+                <th class="transaction-header">Departure Date</th>
+                <th class="transaction-header">Return Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for booked_flight in booked_flights %}
+                <tr>
+                    <td>{{ booked_flight.user }}</td>
+                    {% if booked_flight.flightType == 'One-Way' %}
+                        <td>One-way</td>
+                        <td>{{ booked_flight.destination }}</td>
+                        <td>{{ booked_flight.departureDate }}</td>
+                        <td>{{ booked_flight.departureDate }}</td>
+                    {% else %}
+                        <td>Round-trip</td>
+                        <td>{{ booked_flight.destination }}</td>
+                        <td>NULL</td>
+                        <td>{{ booked_flight.departureDate }}</td>
+                        <td>{{ booked_flight.returnDate }}</td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

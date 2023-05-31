@@ -1,9 +1,11 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # class models
 
 
 class BookedOneWay(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     flightType = models.CharField(max_length=200)
     destination = models.CharField(max_length=200)
     departureDate = models.DateField()
@@ -11,6 +13,7 @@ class BookedOneWay(models.Model):
 
 
 class BookedRoundTrip(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     flightType = models.CharField(max_length=200)
     destination = models.CharField(max_length=200)
     departureDate = models.DateField()
@@ -30,12 +33,4 @@ class OneWayFlight(models.Model):
     flightType = models.CharField(max_length=200)
     destination = models.CharField(max_length=200)
     departureDate = models.DateField()
-    totalAmount = models.CharField(max_length=200)
-
-
-class Flight(models.Model):
-    flightType = models.CharField(max_length=200)
-    destination = models.CharField(max_length=200)
-    departureDate = models.DateField()
-    returnDate = models.DateTimeField(max_length=200, null=True, blank=True)
     totalAmount = models.CharField(max_length=200)

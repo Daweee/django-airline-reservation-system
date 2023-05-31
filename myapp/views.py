@@ -1,12 +1,14 @@
 from django.shortcuts import render
 
-from .models import BookedOneWay, BookedRoundTrip, OneWayFlight, RoundTripFlight, Flight
+from .models import BookedOneWay, BookedRoundTrip, OneWayFlight, RoundTripFlight
 from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth.models import User
 
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from itertools import chain
 
 # Create your views here.
 
@@ -16,13 +18,10 @@ def login_view(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
 
-        if username == 'admin' and password == 'admin123':
-            return redirect('http://localhost:8000/admin')
-
         user = authenticate(username=username, password=password)
         if user is not None:
             auth_login(request, user)
-            if username == 'mandawe' and password == 'mandawe':
+            if username == username and password == password:
                 return redirect('http://localhost:8000/user')
             else:
                 messages.error(request, 'User not found. Please try again.')
@@ -137,29 +136,45 @@ def book_flights(request):
     if request.method == 'POST':
         flight_id = request.POST.get('id')
         flightType = request.POST.get('flightType')
+
         if flight_id and flightType:
+            user = request.user  # Get the currently logged in user
+
             if flightType == 'One-Way':
                 flight = OneWayFlight.objects.get(id=flight_id)
-                booked_flight = BookedOneWay(flightType=flight.flightType,
-                                             destination=flight.destination,
-                                             departureDate=flight.departureDate,
-                                             totalAmount=flight.totalAmount,
-                                             )
+                booked_flight = BookedOneWay(
+                    user=user,
+                    flightType=flight.flightType,
+                    destination=flight.destination,
+                    departureDate=flight.departureDate,
+                    totalAmount=flight.totalAmount,
+                )
                 booked_flight.save()
             elif flightType == 'Round-Trip':
                 flight = RoundTripFlight.objects.get(id=flight_id)
-                booked_flight = BookedRoundTrip(flightType=flight.flightType,
-                                                destination=flight.destination,
-                                                departureDate=flight.departureDate,
-                                                returnDate=flight.returnDate,
-                                                totalAmount=flight.totalAmount,
-                                                )
+                booked_flight = BookedRoundTrip(
+                    user=user,
+                    flightType=flight.flightType,
+                    destination=flight.destination,
+                    departureDate=flight.departureDate,
+                    returnDate=flight.returnDate,
+                    totalAmount=flight.totalAmount,
+                )
                 booked_flight.save()
             messages.success(request, 'Flight Successfully Booked')
+
     return redirect(request.META.get('HTTP_REFERER'))
 
 
+@login_required
+def all_booked_flights(request):
+    booked_one_way = BookedOneWay.objects.all()
+    booked_round_trip = BookedRoundTrip.objects.all()
+    booked_flights = list(booked_one_way) + list(booked_round_trip)
+    return render(request, 'transaction.html', {'booked_flights': booked_flights})
+
+
 def confirmed_flights(request):
-    booked_one_way = BookedOneWay.objects.all
-    booked_round_trip = BookedRoundTrip.objects.all
+    booked_one_way = BookedOneWay.objects.filter(user=request.user)
+    booked_round_trip = BookedRoundTrip.objects.filter(user=request.user)
     return render(request, 'flights.html', {'booked_one_way': booked_one_way, 'booked_round_trip': booked_round_trip})

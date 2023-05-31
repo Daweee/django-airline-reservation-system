@@ -21,6 +21,7 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include('django.contrib.auth.urls')),
     path('adminpage/', TemplateView.as_view(template_name='admin.html'),
          name='adminPage'),
     path('add-one-way-flight/', views.add_one_way_flight,
@@ -34,4 +35,5 @@ urlpatterns = [
     path('user/', views.all_flights, name='all_flights'),
     path('book/', views.book_flights, name='book'),
     path('confirm/', views.confirmed_flights, name='confirm'),
+    path('transaction/', views.all_booked_flights, name='transaction'),
 ]

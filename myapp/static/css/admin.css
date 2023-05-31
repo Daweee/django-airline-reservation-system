@@ -17,14 +17,15 @@ header {
 
 nav ul {
     margin: 0;
-    padding-right: 847px;
+    padding: 0; /* Remove the explicit padding-right value */
     list-style-type: none;
     text-align: right;
     list-style: none;
+    display: flex; /* Add flex display */
+    align-items: center; /* Align items vertically */
 }
 
 nav li {
-    display: inline-block;
     margin-left: 20px;
 }
 
@@ -108,5 +109,4 @@ footer {
     padding: 10px;
     text-align: center;
     margin-top: auto;
-  }
-
+}
